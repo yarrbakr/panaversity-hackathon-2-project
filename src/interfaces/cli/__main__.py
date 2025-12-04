@@ -1,7 +1,7 @@
 import argparse
 from src.core.application.services import TodoService
 from src.core.infrastructure.in_memory_repository import InMemoryTaskRepository
-from src.interfaces.cli.handlers import add_task, list_tasks
+from src.interfaces.cli.handlers import add_task, list_tasks, done_task, undone_task, update_task_handler, delete_task_handler
 
 def main():
     parser = argparse.ArgumentParser(description="A simple command-line to-do application.")

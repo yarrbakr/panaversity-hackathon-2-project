@@ -10,64 +10,76 @@ echo "--- Starting Console To-Do App Verification ---"
 
 # --- Setup ---
 echo "Initializing environment..."
-# Assuming uv venv and uv pip install -e . have been run
-# For this script, we'll just ensure python -m src.interfaces.cli works
-python -c "import sys; sys.path.insert(0, '.'); import src.interfaces.cli.__main__"
+# Activate the uv virtual environment
+source .venv/bin/activate
 
-echo "--- Testing Add and List ---"
+# Run a single Python script to execute all commands
+python - <<END_PYTHON
+import sys
+from src.core.application.services import TodoService
+from src.core.infrastructure.in_memory_repository import InMemoryTaskRepository
+from src.interfaces.cli.handlers import add_task, list_tasks, done_task, undone_task, update_task_handler, delete_task_handler
+from rich.console import Console
+
+console = Console()
+repository = InMemoryTaskRepository()
+service = TodoService(repository)
+
+console.print("--- Testing Add and List ---", style="bold blue")
 # Add a task
-echo "Adding task 1: Buy groceries"
-python -m src.interfaces.cli add --title "Buy groceries" --description "Milk, eggs, bread"
+console.print("Adding task 1: Buy groceries", style="blue")
+add_task(service, "Buy groceries", "Milk, eggs, bread")
 
 # Add another task
-echo "Adding task 2: Call mom"
-python -m src.interfaces.cli add --title "Call mom"
+console.print("Adding task 2: Call mom", style="blue")
+add_task(service, "Call mom")
 
 # List tasks
-echo "Listing all tasks:"
-python -m src.interfaces.cli list
+console.print("Listing all tasks:", style="blue")
+list_tasks(service)
 
-echo "--- Testing Mark Complete and Incomplete ---"
+console.print("--- Testing Mark Complete and Incomplete ---", style="bold blue")
 # Mark task 1 as complete
-echo "Marking task 1 as complete:"
-python -m src.interfaces.cli done --id 1
+console.print("Marking task 1 as complete:", style="blue")
+done_task(service, 1)
 
 # List tasks to verify
-echo "Listing tasks after marking task 1 complete:"
-python -m src.interfaces.cli list
+console.print("Listing tasks after marking task 1 complete:", style="blue")
+list_tasks(service)
 
 # Mark task 1 as incomplete
-echo "Marking task 1 as incomplete:"
-python -m src.interfaces.cli undone --id 1
+console.print("Marking task 1 as incomplete:", style="blue")
+undone_task(service, 1)
 
 # List tasks to verify
-echo "Listing tasks after marking task 1 incomplete:"
-python -m src.interfaces.cli list
+console.print("Listing tasks after marking task 1 incomplete:", style="blue")
+list_tasks(service)
 
-echo "--- Testing Update ---"
+console.print("--- Testing Update ---", style="bold blue")
 # Update task 2
-echo "Updating task 2: Call mom -> Call Mom (urgent)"
-python -m src.interfaces.cli update --id 2 --title "Call Mom (urgent)" --description "Discuss weekend plans"
+console.print("Updating task 2: Call mom -> Call Mom (urgent)", style="blue")
+update_task_handler(service, 2, "Call Mom (urgent)", "Discuss weekend plans")
 
 # List tasks to verify
-echo "Listing tasks after updating task 2:"
-python -m src.interfaces.cli list
+console.print("Listing tasks after updating task 2:", style="blue")
+list_tasks(service)
 
-echo "--- Testing Delete ---"
+console.print("--- Testing Delete ---", style="bold blue")
 # Delete task 1
-echo "Deleting task 1:"
-python -m src.interfaces.cli delete --id 1
+console.print("Deleting task 1:", style="blue")
+delete_task_handler(service, 1)
 
 # List tasks to verify
-echo "Listing tasks after deleting task 1:"
-python -m src.interfaces.cli list
+console.print("Listing tasks after deleting task 1:", style="blue")
+list_tasks(service)
 
-echo "--- Testing Edge Cases ---"
-echo "Attempting to delete non-existent task (ID 999):"
-python -m src.interfaces.cli delete --id 999 || true # Expecting error, so don't exit
+console.print("--- Testing Edge Cases ---", style="bold blue")
+console.print("Attempting to delete non-existent task (ID 999):", style="blue")
+delete_task_handler(service, 999)
 
-echo "Attempting to add task with empty title:"
-python -m src.interfaces.cli add --title "" || true # Expecting error, so don't exit
+console.print("Attempting to add task with empty title:", style="blue")
+add_task(service, "")
 
-echo "--- Verification Complete ---"
-echo "All simulated commands executed. Please review output for correctness."
+console.print("--- Verification Complete ---", style="bold green")
+console.print("All simulated commands executed. Please review output for correctness.", style="bold green")
+END_PYTHON
