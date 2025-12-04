@@ -15,6 +15,7 @@ from src.interfaces.tui.screens.edit_task import EditTaskScreen
 class TodoApp(App):
     """A Textual To-Do application."""
 
+    TITLE = "To-Do TUI"
     CSS_PATH = "app.css"
     BINDINGS = [
         Binding("a", "add_task", "Add Task"),
