@@ -1,0 +1,71 @@
+/* Basic styling for the To-Do TUI application */
+
+Screen {
+    layout: vertical;
+    background: $panel;
+}
+
+AppHeader {
+    dock: top;
+    height: 1;
+    background: $primary;
+    color: $text;
+    text-style: bold;
+}
+
+AppFooter {
+    dock: bottom;
+    height: 1;
+    background: $primary-lighten-2;
+    color: $text;
+}
+
+TaskList {
+    width: 100%;
+    height: 100%;
+    border: solid $accent;
+}
+
+/* Add Task Screen */
+AddTaskScreen {
+    align: center middle;
+}
+
+AddTaskScreen > Input {
+    width: 80%;
+    margin: 1;
+}
+
+AddTaskScreen > Button {
+    width: 80%;
+    margin: 1;
+}
+
+/* Edit Task Screen */
+EditTaskScreen {
+    align: center middle;
+}
+
+EditTaskScreen > Input {
+    width: 80%;
+    margin: 1;
+}
+
+EditTaskScreen > Button {
+    width: 80%;
+    margin: 1;
+}
+
+/* Confirm Delete Screen */
+ConfirmDeleteScreen {
+    align: center middle;
+}
+
+ConfirmDeleteScreen > Label {
+    margin: 1;
+}
+
+ConfirmDeleteScreen > Button {
+    width: 40%;
+    margin: 1;
+}

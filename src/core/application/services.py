@@ -13,7 +13,7 @@ class TodoService:
         return self.task_repository.add(task)
 
     def get_task(self, user_id: str, task_id: int) -> Optional[Task]:
-        pass
+        return self.task_repository.get_by_id(task_id)
 
     def list_tasks(self, user_id: str) -> List[Task]:
         # For now, we are not filtering by user_id, but this is where it would happen

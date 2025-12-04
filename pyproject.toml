@@ -4,9 +4,11 @@ version = "0.1.0"
 dependencies = [
     "sqlmodel",
     "rich",
+    "textual",
 ]
 
 [project.optional-dependencies]
 test = [
     "pytest",
+    "pytest-textual-snapshot",
 ]

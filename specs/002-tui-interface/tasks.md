@@ -21,8 +21,8 @@
 
 **Purpose**: Project initialization and basic structure for the TUI feature.
 
-- [ ] T001 [P] Add `textual` and `pytest-textual-snapshot` to `pyproject.toml` under the `[project.dependencies]` and `[project.optional-dependencies.test]` sections, respectively.
-- [ ] T002 [P] Create the directory structure for the TUI interface: `src/interfaces/tui/widgets`, `src/interfaces/tui/screens`, and `tests/integration/tui`.
+- [x] T001 [P] Add `textual` and `pytest-textual-snapshot` to `pyproject.toml` under the `[project.dependencies]` and `[project.optional-dependencies.test]` sections, respectively.
+- [x] T002 [P] Create the directory structure for the TUI interface: `src/interfaces/tui/widgets`, `src/interfaces/tui/screens`, and `tests/integration/tui`.
 
 ---
 
@@ -32,12 +32,12 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T003 Create the main TUI app file `src/interfaces/tui/app.py` with a basic `App` class that will contain the TUI.
-- [ ] T004 [P] Create a `Header` widget in `src/interfaces/tui/widgets/header.py` to display the application title.
-- [ ] T005 [P] Create a `Footer` widget in `src/interfaces/tui/widgets/footer.py` to display key bindings and other contextual information.
-- [ ] T006 Create a basic `DataTable` widget in `src/interfaces/tui/widgets/task_list.py` for displaying tasks.
-- [ ] T007 [P] Create a CSS file `src/interfaces/tui/app.css` for basic styling of the TUI components.
-- [ ] T008 Compose the main app layout in `src/interfaces/tui/app.py` using the Header, Task List, and Footer widgets.
+- [x] T003 Create the main TUI app file `src/interfaces/tui/app.py` with a basic `App` class that will contain the TUI.
+- [x] T004 [P] Create a `Header` widget in `src/interfaces/tui/widgets/header.py` to display the application title.
+- [x] T005 [P] Create a `Footer` widget in `src/interfaces/tui/widgets/footer.py` to display key bindings.
+- [x] T006 Create a basic `DataTable` widget in `src/interfaces/tui/widgets/task_list.py` for displaying tasks.
+- [x] T007 [P] Create a CSS file `src/interfaces/tui/app.css` for basic styling.
+- [x] T008 Compose the main app layout in `src/interfaces/tui/app.py` with the Header, Task List, and Footer widgets.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel.
 
@@ -50,10 +50,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Implement the logic in `src/interfaces/tui/app.py` to fetch tasks from the `TodoService` and populate the `DataTable` on mount.
-- [ ] T010 [US1] Create a modal `Screen` for adding a new task in `src/interfaces/tui/screens/add_task.py`. This screen should contain a form with input fields for title and description.
-- [ ] T011 [US1] Implement the 'a' key binding in `src/interfaces/tui/app.py` to push the `AddTaskScreen` as a modal dialog.
-- [ ] T012 [US1] Implement the form submission logic in `AddTaskScreen` to call the `add_task` method of the `TodoService` and then refresh the main task list.
+- [x] T009 [US1] Implement the logic in `src/interfaces/tui/app.py` to fetch tasks from the `TodoService` and populate the `DataTable`.
+- [x] T010 [US1] Create a modal `Screen` for adding a new task in `src/interfaces/tui/screens/add_task.py`. This screen should contain a form with input fields for title and description.
+- [x] T011 [US1] Implement the 'a' key binding in `src/interfaces/tui/app.py` to push the `AddTaskScreen` as a modal dialog.
+- [x] T012 [US1] Implement the form submission logic in `AddTaskScreen` to call the `add_task` method of the `TodoService`.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -66,10 +66,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Implement the 'space' key binding in `src/interfaces/tui/app.py` to toggle the completion status of the currently selected task in the `DataTable`.
-- [ ] T014 [US2] Create a confirmation dialog `Screen` in `src/interfaces/tui/screens/confirm_delete.py` to ask the user for confirmation before deleting a task.
-- [ ] T015 [US2] Implement the 'd' key binding in `src/interfaces/tui/app.py` to push the `ConfirmDeleteScreen`.
-- [ ] T016 [US2] Implement the deletion logic in `ConfirmDeleteScreen` to call the `delete_task` method of the `TodoService` upon confirmation and refresh the task list.
+- [x] T013 [US2] Implement the 'space' key binding in `src/interfaces/tui/app.py` to toggle the completion status of the currently selected task in the `DataTable`.
+- [x] T014 [US2] Create a confirmation dialog `Screen` in `src/interfaces/tui/screens/confirm_delete.py` to ask the user for confirmation before deleting a task.
+- [x] T015 [US2] Implement the 'd' key binding in `src/interfaces/tui/app.py` to push the `ConfirmDeleteScreen`.
+- [x] T016 [US2] Implement the deletion logic in `ConfirmDeleteScreen` to call the `delete_task` method of the `TodoService`.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 
@@ -82,9 +82,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T017 [US3] Create a modal `Screen` for editing a task in `src/interfaces/tui/screens/edit_task.py`, with a form pre-filled with the task's data.
-- [ ] T018 [US3] Implement the 'e' key binding in `src/interfaces/tui/app.py` to push the `EditTaskScreen` with the data of the currently selected task.
-- [ ] T019 [US3] Implement the form submission logic in `EditTaskScreen` to call the `update_task` method of the `TodoService` and refresh the task list.
+- [x] T017 [US3] Create a modal `Screen` for editing a task in `src/interfaces/tui/screens/edit_task.py`, with a form pre-filled with the task's data.
+- [x] T018 [US3] Implement the 'e' key binding in `src/interfaces/tui/app.py` to push the `EditTaskScreen` with the selected task's data.
+- [x] T019 [US3] Implement the form submission logic in `EditTaskScreen` to call the `update_task` method of the `TodoService`.
 
 **Checkpoint**: All user stories should now be independently functional.
 
@@ -94,9 +94,9 @@
 
 **Purpose**: Improvements that affect multiple user stories.
 
-- [ ] T020 [P] Add snapshot tests for the main app screen and modal screens in `tests/integration/tui/`.
-- [ ] T021 [P] Refine the TUI layout and styling in `src/interfaces/tui/app.css` for a better user experience.
-- [ ] T022 Create a `__main__.py` file in `src/interfaces/tui/` to allow running the TUI app as a module (`python -m src.interfaces.tui`).
+- [x] T020 [P] Add snapshot tests for the main app screen and modal screens in `tests/integration/tui/`.
+- [x] T021 [P] Refine the TUI layout and styling in `src/interfaces/tui/app.css` for a better user experience.
+- [x] T022 Create a `__main__.py` file in `src/interfaces/tui/` to allow running the TUI app as a module (`python -m src.interfaces.tui`).
 
 ---
 
