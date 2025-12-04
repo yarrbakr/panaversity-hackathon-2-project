@@ -1,0 +1,12 @@
+[project]
+name = "console-todo-app"
+version = "0.1.0"
+dependencies = [
+    "sqlmodel",
+    "rich",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]

@@ -21,9 +21,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Initialize Python project with `uv` by running `uv venv` and creating a `src` directory.
-- [ ] T002 [P] Create `pyproject.toml` and add dependencies: `sqlmodel`, `rich`, `pytest`.
-- [ ] T003 [P] Create project directory structure: `src/core/application/ports`, `src/core/domain`, `src/core/infrastructure`, `src/interfaces/cli`, `tests/unit`, `tests/integration`.
+- [x] T001 Initialize Python project with `uv` by running `uv venv` and creating a `src` directory.
+- [x] T002 [P] Create `pyproject.toml` and add dependencies: `sqlmodel`, `rich`, `pytest`.
+- [x] T003 [P] Create project directory structure: `src/core/application/ports`, `src/core/domain`, `src/core/infrastructure`, `src/interfaces/cli`, `tests/unit`, `tests/integration`.
 
 ---
 
@@ -33,10 +33,10 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Define the `Task` entity using SQLModel in `src/core/domain/entities.py`.
-- [ ] T005 Define the abstract `TaskRepository` interface (port) in `src/core/application/ports/task_repository.py`.
-- [ ] T006 Implement the `InMemoryTaskRepository` adapter in `src/core/infrastructure/in_memory_repository.py`.
-- [ ] T007 Define the `TodoService` class in `src/core/application/services.py` with empty methods based on the `core_service.md` contract.
+- [x] T004 Define the `Task` entity using SQLModel in `src/core/domain/entities.py`.
+- [x] T005 Define the abstract `TaskRepository` interface (port) in `src/core/application/ports/task_repository.py`.
+- [x] T006 Implement the `InMemoryTaskRepository` adapter in `src/core/infrastructure/in_memory_repository.py`.
+- [x] T007 Define the `TodoService` class in `src/core/application/services.py` with empty methods based on the `core_service.md` contract.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel.
 
@@ -49,11 +49,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Implement the `add_task` use case in `src/core/application/services.py`.
-- [ ] T009 [US1] Implement the `list_tasks` use case in `src/core/application/services.py`.
-- [ ] T010 [US1] Implement the `add` command handler in `src/interfaces/cli/handlers.py`.
-- [ ] T011 [US1] Implement the `list` command handler in `src/interfaces/cli/handlers.py`.
-- [ ] T012 [US1] Implement the main CLI entry point with `argparse` in `src/interfaces/cli/__main__.py` to handle the `add` and `list` commands.
+- [x] T008 [US1] Implement the `add_task` use case in `src/core/application/services.py`.
+- [x] T009 [US1] Implement the `list_tasks` use case in `src/core/application/services.py`.
+- [x] T010 [US1] Implement the `add` command handler in `src/interfaces/cli/handlers.py`.
+- [x] T011 [US1] Implement the `list` command handler in `src/interfaces/cli/handlers.py`.
+- [x] T012 [US1] Implement the main CLI entry point with `argparse` in `src/interfaces/cli/__main__.py` to handle the `add` and `list` commands.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -66,11 +66,11 @@
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Implement the `mark_task_complete` use case in `src/core/application/services.py`.
-- [ ] T014 [US2] Implement the `mark_task_incomplete` use case in `src/core/application/services.py`.
-- [ ] T015 [US2] Implement the `done` command handler in `src/interfaces/cli/handlers.py`.
-- [ ] T016 [US2] Implement the `undone` command handler in `src/interfaces/cli/handlers.py`.
-- [ ] T017 [US2] Update `src/interfaces/cli/__main__.py` to handle the `done` and `undone` commands.
+- [x] T013 [US2] Implement the `mark_task_complete` use case in `src/core/application/services.py`.
+- [x] T014 [US2] Implement the `mark_task_incomplete` use case in `src/core/application/services.py`.
+- [x] T015 [US2] Implement the `done` command handler in `src/interfaces/cli/handlers.py`.
+- [x] T016 [US2] Implement the `undone` command handler in `src/interfaces/cli/handlers.py`.
+- [x] T017 [US2] Update `src/interfaces/cli/__main__.py` to handle the `done` and `undone` commands.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 
@@ -83,11 +83,11 @@
 
 ### Implementation for User Story 3
 
-- [ ] T018 [US3] Implement the `update_task` use case in `src/core/application/services.py`.
-- [ ] T019 [US3] Implement the `delete_task` use case in `src/core/application/services.py`.
-- [ ] T020 [US3] Implement the `update` command handler in `src/interfaces/cli/handlers.py`.
-- [ ] T021 [US3] Implement the `delete` command handler in `src/interfaces/cli/handlers.py`.
-- [ ] T022 [US3] Update `src/interfaces/cli/__main__.py` to handle the `update` and `delete` commands.
+- [x] T018 [US3] Implement the `update_task` use case in `src/core/application/services.py`.
+- [x] T019 [US3] Implement the `delete_task` use case in `src/core/application/services.py`.
+- [x] T020 [US3] Implement the `update` command handler in `src/interfaces/cli/handlers.py`.
+- [x] T021 [US3] Implement the `delete` command handler in `src/interfaces/cli/handlers.py`.
+- [x] T022 [US3] Update `src/interfaces/cli/__main__.py` to handle the `update` and `delete` commands.
 
 **Checkpoint**: All user stories should now be independently functional.
 
@@ -97,10 +97,10 @@
 
 **Purpose**: Improvements that affect multiple user stories.
 
-- [ ] T023 [P] Refactor CLI output to use the `rich` library for formatted tables and colors in `src/interfaces/cli/handlers.py`.
-- [ ] T024 [P] Add comprehensive unit tests for all service methods in `tests/unit/`.
-- [ ] T025 [P] Add integration tests for the CLI commands in `tests/integration/`.
-- [ ] T026 Create a verification script `verify.sh` to run a full user workflow, simulating the commands from `quickstart.md`.
+- [x] T023 [P] Refactor CLI output to use the `rich` library for formatted tables and colors in `src/interfaces/cli/handlers.py`.
+- [x] T024 [P] Add comprehensive unit tests for all service methods in `tests/unit/`.
+- [x] T025 [P] Add integration tests for the CLI commands in `tests/integration/`.
+- [x] T026 Create a verification script `verify.sh` to run a full user workflow, simulating the commands from `quickstart.md`.
 
 ---
 
