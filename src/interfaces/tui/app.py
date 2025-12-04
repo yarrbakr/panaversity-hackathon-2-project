@@ -22,7 +22,7 @@ class TodoApp(App):
         Binding("a", "add_task", "Add Task"),
         Binding("e", "edit_task", "Edit Task"),
         Binding("d", "delete_task", "Delete Task"),
-        Binding("ctrl+i", "delete_by_id", "Delete by ID"),
+        Binding("i", "delete_by_id", "Delete by ID"),
         Binding("space", "toggle_task_status", "Toggle Status"),
         Binding("q", "quit", "Quit"),
     ]
