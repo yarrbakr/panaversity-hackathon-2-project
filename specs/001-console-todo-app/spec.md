@@ -52,21 +52,21 @@ As a user, I want to edit the details of a task or delete it entirely, so I can 
 
 ### Edge Cases
 
--   Attempting to update, delete, or mark a task with an ID that does not exist should result in a user-friendly error message (e.g., "Error: Task with ID 99 not found.").
+-   Attempting to update, delete, or mark a task with an ID that does not exist should result in a concise error message (e.g., "Error: Task with ID 99 not found.").
 -   Attempting to list tasks when no tasks have been added should display a message indicating the list is empty (e.g., "No tasks to show.").
--   Providing non-numeric input when an ID is expected should result in a clear error message.
+-   Providing non-numeric input when an ID is expected should result in a concise error message (e.g., "Error: Invalid ID format.").
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
--   **FR-001**: System MUST allow users to add a task with a title and a description.
--   **FR-002**: System MUST display a list of all tasks, including their ID, title, and completion status.
--   **FR-003**: System MUST allow users to mark an existing task as complete by its ID.
--   **FR-004**: System MUST allow users to revert a completed task to incomplete by its ID.
--   **FR-005**: System MUST allow users to update the title and description of an existing task by its ID.
--   **FR-006**: System MUST allow users to delete a task by its ID.
--   **FR-007**: System MUST assign a unique, sequential integer ID to each new task, starting from 1.
+-   **FR-001**: System MUST allow users to add a task with a title and a description via an `add` command.
+-   **FR-002**: System MUST display a list of all tasks, including their ID, title, and completion status, via a `list` command.
+-   **FR-003**: System MUST allow users to mark an existing task as complete by its ID via a `done` command.
+-   **FR-004**: System MUST allow users to revert a completed task to incomplete by its ID via an `undone` command.
+-   **FR-005**: System MUST allow users to update the title and description of an existing task by its ID via an `update` command.
+-   **FR-006**: System MUST allow users to delete a task by its ID via a `delete` command.
+-   **FR-007**: System MUST assign a unique, sequential integer ID to each new task, starting from 1. Once an ID is used, it MUST NOT be reused, even if the associated task is deleted.
 -   **FR-008**: The application's state (the list of tasks) MUST be managed in memory and will not persist after the application closes.
 
 ### Key Entities *(include if feature involves data)*
@@ -91,5 +91,11 @@ As a user, I want to edit the details of a task or delete it entirely, so I can 
 
 -   **SC-001**: A user can successfully perform all five core actions (add, list, update, complete, delete) on tasks within a single, uninterrupted session.
 -   **SC-002**: The task list view must visually distinguish between complete and incomplete tasks using a clear indicator (e.g., `[x]` vs. `[ ]`).
--   **SC-003**: The system provides clear, human-readable feedback to the user after every action (e.g., "Success: Task 'Buy milk' added.", "Error: Task with ID 99 not found.").
+-   **SC-003**: The system provides concise, human-readable feedback to the user after every action (e.g., "Success: Task 'Buy milk' added.", "Error: Task with ID 99 not found.").
 -   **SC-004**: 100% of the functional requirements (FR-001 to FR-006) are implemented and verifiable through the console interface.
+
+## Clarifications
+### Session 2025-12-05
+- Q: What style of commands should the user type to interact with the to-do list? → A: Full words (e.g., add, list, done, update, delete)
+- Q: Should task IDs be reused after a task is deleted? → A: Never reuse IDs
+- Q: What level of detail should error messages provide to the user? → A: Concise
