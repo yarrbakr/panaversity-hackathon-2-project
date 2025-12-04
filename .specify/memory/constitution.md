@@ -1,50 +1,67 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+
+- Version change: None -> 1.0.0
+- List of modified principles: N/A (Initial creation)
+- Added sections:
+  - Core Principles
+  - Key Standards
+  - Constraints & Success Criteria
+  - Governance
+  
+- Removed sections: N/A
+- Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md
+  - ✅ .specify/templates/spec-template.md
+  - ✅ .specify/templates/tasks-template.md
+- Follow-up TODOs: None
+-->
+# PANAVERSITY-HACKATHON (Evolutionary Architecture: CLI -> Web -> AI Agent -> Cloud Native) Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. The "Spec-First" Law
+No code is written manually. All implementation originates from Markdown specifications in the `/specs` folder. The Source of Truth is the Spec, not the Code.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Hexagonal Architecture (Ports & Adapters)
+The "Core Domain" (Todo Logic) must remain isolated from the "Presentation Layer" (CLI/Web/Chat).
+- Phase I (CLI) is treated as an "Interface" to the domain.
+- Phase II (Web) is treated as an "Interface" to the domain.
+- Phase III (MCP/AI) is treated as an "Interface" to the domain.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. State Isolation
+The application logic must be stateless. State persistence (Memory/DB/Kafka) is an external dependency injected into the core.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Event-Driven Mindset
+Operations should be designed as events (e.g., "Task Created") rather than just database writes, preparing the system for Phase V (Kafka/Dapr).
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## Key Standards
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- **Monorepo Structure**: Strictly adhere to the Spec-Kit Plus directory layout:
+    - `/.spec-kit/` (Configuration)
+    - `/specs/` (features/, api/, database/, ui/)
+    - `/src/core/` (Business Logic - Pure Python, No I/O)
+    - `/src/interfaces/` (cli/, api/, mcp/)
+    - `/frontend/` (Next.js - Phase II+)
+- **Technology Stack**:
+    - Language: Python 3.13+ (Managed by `uv`)
+    - ORM: SQLModel (Used in Core for Pydantic models, even for in-memory Phase I)
+    - Auth: Better Auth / JWT concepts (User ID must be a parameter in Core methods from Day 1, even if mocked in CLI).
+- **Documentation**:
+    - Root `CLAUDE.md` for global context.
+    - Sub-directory `CLAUDE.md` files for specific layer context (Frontend vs Backend).
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Constraints & Success Criteria
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- **I/O Ban**: The `/src/core` directory is strictly forbidden from using `print()`, `input()`, or direct HTTP calls. It must return raw data objects (DTOs/Dictionaries).
+- **Tooling**: All Docker/Kubernetes operations (Phase IV) must be performed via AI Assistants (Gordon/kubectl-ai), defined via Specs.
+- **User-Centricity**: Every Core method must accept a `user_id` argument to support Multi-Tenancy (Phase II) and RAG Context (Phase III) immediately.
+- **Success**: This constitution serves as the immutable law for the project lifecycle. It defines the workflow (Spec -> AI -> Code -> Verify) and prevents technical debt by enforcing separation of concerns (Data/View/Control).
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This Constitution is the supreme governing document for this project. It dictates the principles, standards, and constraints that all contributors MUST follow. All development artifacts, including specifications, code, and documentation, must comply with this constitution.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+The defined workflow is: Spec Update -> AI Code Prompt -> Implementation -> Verification.
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-05 | **Last Amended**: 2025-12-05
