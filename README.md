@@ -19,7 +19,7 @@ This is a simple, in-memory to-do application with both a Command-Line Interface
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/panaversity/panaversity-hackathon-2-project
+git clone https://github.com/yarrbakr/panaversity-hackathon-2-project
 cd panaversity-hackathon-2-project
 ```
 
