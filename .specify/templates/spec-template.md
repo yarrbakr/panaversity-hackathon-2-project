@@ -100,14 +100,6 @@
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
-## Constitution Alignment *(mandatory)*
-
-- **Spec-First Law**: This document fulfills the requirement for a specification.
-- **Hexagonal Architecture**: Does this spec maintain the separation of core logic from I/O and interfaces?
-- **State Isolation**: Is state handled as an external dependency?
-- **I/O Ban**: Does this spec require any I/O operations within the `/src/core` domain? If so, it must be redesigned.
-- **User-Centricity**: Is `user_id` accounted for in all relevant core operations?
-
 ## Success Criteria *(mandatory)*
 
 <!--

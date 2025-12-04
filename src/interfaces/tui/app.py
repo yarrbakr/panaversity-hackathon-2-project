@@ -11,6 +11,7 @@ from src.core.infrastructure.in_memory_repository import InMemoryTaskRepository
 from src.interfaces.tui.screens.confirm_delete import ConfirmDeleteScreen
 
 from src.interfaces.tui.screens.edit_task import EditTaskScreen
+from src.interfaces.tui.screens.delete_by_id import DeleteByIdScreen
 
 class TodoApp(App):
     """A Textual To-Do application."""
@@ -21,6 +22,7 @@ class TodoApp(App):
         Binding("a", "add_task", "Add Task"),
         Binding("e", "edit_task", "Edit Task"),
         Binding("d", "delete_task", "Delete Task"),
+        Binding("ctrl+i", "delete_by_id", "Delete by ID"),
         Binding("space", "toggle_task_status", "Toggle Status"),
         Binding("q", "quit", "Quit"),
     ]
@@ -99,6 +101,21 @@ class TodoApp(App):
                         self.update_task_list()
                 
                 self.push_screen(EditTaskScreen(task.title, task.description or ""), edit_task_callback)
+
+    def action_delete_by_id(self) -> None:
+        """An action to delete a task by its ID."""
+        def delete_by_id_callback(task_id: int):
+            if task_id is not None:
+                task = self.service.get_task("default_user", task_id)
+                if task:
+                    def delete_task_callback(confirmed: bool):
+                        if confirmed:
+                            self.service.delete_task("default_user", task_id)
+                            self.update_task_list()
+                    
+                    self.push_screen(ConfirmDeleteScreen(task.title), delete_task_callback)
+        
+        self.push_screen(DeleteByIdScreen(), delete_by_id_callback)
 
 if __name__ == "__main__":
     app = TodoApp()

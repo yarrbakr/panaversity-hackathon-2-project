@@ -17,25 +17,21 @@
   the iteration process.
 -->
 
-**Language/Version**: Python 3.13+ (Managed by `uv`)
-**Primary Dependencies**: SQLModel
-**Storage**: [if applicable, e.g., PostgreSQL, files or N/A]
-**Testing**: [e.g., pytest or NEEDS CLARIFICATION]
-**Target Platform**: [e.g., Linux server, WASM or NEEDS CLARIFICATION]
-**Project Type**: Monorepo (core, interfaces, frontend)
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]
+**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
+**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
+**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
+**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
+**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+**Project Type**: [single/web/mobile - determines source structure]  
+**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
+**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
 **Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-- **Spec-First Law**: Does a specification in `/specs` drive this feature?
-- **Hexagonal Architecture**: Is the core domain (`/src/core`) fully isolated from interfaces (`/src/interfaces`)?
-- **State Isolation**: Is application state managed externally and injected into the core?
-- **I/O Ban**: Does the code in `/src/core` contain ZERO `print`, `input`, or direct HTTP calls?
-- **User-Centricity**: Do all core methods accept a `user_id` parameter?
+[Gates determined based on constitution file]
 
 ## Project Structure
 
@@ -52,24 +48,51 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
+<!--
+  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
+  for this feature. Delete unused options and expand the chosen structure with
+  real paths (e.g., apps/admin, packages/something). The delivered plan must
+  not include Option labels.
+-->
+
 ```text
-/
-├── specs/
-│   ├── features/
-│   ├── api/
-│   ├── database/
-│   └── ui/
+# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
+src/
+├── models/
+├── services/
+├── cli/
+└── lib/
+
+tests/
+├── contract/
+├── integration/
+└── unit/
+
+# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+backend/
 ├── src/
-│   ├── core/      # Business Logic - Pure Python, No I/O
-│   └── interfaces/ # cli/, api/, mcp/
-├── frontend/      # Next.js - Phase II+
+│   ├── models/
+│   ├── services/
+│   └── api/
 └── tests/
-    ├── contract/
-    ├── integration/
-    └── unit/
+
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   └── services/
+└── tests/
+
+# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
+api/
+└── [same as backend above]
+
+ios/ or android/
+└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: The project structure is fixed by the constitution. All features must adhere to this layout.
+**Structure Decision**: [Document the selected structure and reference the real
+directories captured above]
 
 ## Complexity Tracking
 
