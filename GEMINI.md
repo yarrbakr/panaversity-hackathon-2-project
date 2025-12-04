@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2025-12-05
 
 ## Active Technologies
+- Python 3.13+ (Managed by `uv`) + Textual (for the TUI), SQLModel (for data modeling) (002-tui-interface)
+- In-memory dictionary (reusing existing infrastructure) (002-tui-interface)
 
 - Python 3.13+ (Managed by `uv`) + SQLModel (for data modeling, even in-memory) (001-console-todo-app)
 
@@ -22,6 +24,7 @@ cd src [ONLY COMMANDS FOR ACTIVE TECHNOLOGIES][ONLY COMMANDS FOR ACTIVE TECHNOLO
 Python 3.13+ (Managed by `uv`): Follow standard conventions
 
 ## Recent Changes
+- 002-tui-interface: Added Python 3.13+ (Managed by `uv`) + Textual (for the TUI), SQLModel (for data modeling)
 
 - 001-console-todo-app: Added Python 3.13+ (Managed by `uv`) + SQLModel (for data modeling, even in-memory)
 
